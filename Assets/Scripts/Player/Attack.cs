@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Core;
 
 namespace PlayerSpace
 {
@@ -14,11 +15,12 @@ namespace PlayerSpace
 
         public IEnumerator Fire(Transform transform) 
         {
+            var global = GlobalFields.Instans;
             while (true)
             {
                 if (Input.GetButton("Fire1"))
                 {
-                    GameObject laser = GameObject.Instantiate(laserPrefab, transform.position, Quaternion.identity);
+                    GameObject laser = GameObject.Instantiate(laserPrefab, transform.position, Quaternion.identity, global.GetSpawnHolder());
                     laser.GetComponent<Rigidbody2D>().velocity = new Vector2(0, laserSpeed);
                     yield return new WaitForSeconds(instatiateSpeed);
                 }

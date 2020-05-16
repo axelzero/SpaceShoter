@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using Core;
 namespace EnemySpace
 {
     public class EnemySpawner : MonoBehaviour
@@ -31,12 +31,21 @@ namespace EnemySpace
 
         private IEnumerator SpawnAllEnemiesInWave(WaveConfig currentWave)
         {
+            var gloabal = GlobalFields.Instans;
+
             int countEnemy = currentWave.GetNumberOfEnemies();
             yield return new WaitForSeconds(currentWave.GetDelay());
             for (int i = 0; i < countEnemy; i++)
             {
-                var enemy = Instantiate(currentWave.GetEnemyPrefab(), currentWave.GetWayPoints()[0].transform.position, Quaternion.identity);
-                enemy.GetComponent<Enemy>().GetPath().SetWaveConfig(currentWave);
+                var enemyPrefab = currentWave.GetEnemyPrefab();
+                var pos = currentWave.GetWayPoints()[0].transform.position;
+                var holder = gloabal.GetSpawnHolder();
+
+                var enemyGo = Instantiate(enemyPrefab, pos, Quaternion.identity, holder);
+                var enemy = enemyGo.GetComponent<Enemy>();
+                enemy.GetPath().SetWaveConfig(currentWave);
+                enemy.SetHealth(currentWave.GetHealth());
+                enemy.EnemyShooting.SetShooting(currentWave.GetShooting());
                 yield return new WaitForSeconds(currentWave.GetTiemBetweenSpawn());
             }
         }

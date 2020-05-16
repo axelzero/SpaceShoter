@@ -2,13 +2,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Core;
 
 namespace EnemySpace
 {
     [System.Serializable]
     public class EnemyShooting 
     {
-        [SerializeField] private bool shooting = true;
+                         private bool shooting = true;
         [SerializeField] private GameObject enemyLaserPregab;
         [SerializeField] private float laserSpeed = 10f;
         [SerializeField] private float shotCounter;
@@ -32,8 +33,13 @@ namespace EnemySpace
 
         private void Fire(Transform transform, float enemySpeed)
         {
-            GameObject laser = GameObject.Instantiate(enemyLaserPregab, transform.position + shift, Quaternion.identity);
+            var global = GlobalFields.Instans;
+            GameObject laser = GameObject.Instantiate(enemyLaserPregab, transform.position + shift, Quaternion.identity, global.GetSpawnHolder());
             laser.GetComponent<Rigidbody2D>().velocity = new Vector2(0f, -laserSpeed - enemySpeed);
+        }
+        public void SetShooting(bool shooting) 
+        {
+            this.shooting = shooting;
         }
     }
 }

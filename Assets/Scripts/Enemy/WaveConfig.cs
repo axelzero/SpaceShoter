@@ -13,9 +13,11 @@ namespace EnemySpace
         [SerializeField] private float spawnRandomFactor = 0.3f;
         [SerializeField] private int numberOfEnemies = 10;
         [SerializeField] private float moveSpeed = 5f;
+        [SerializeField] private int health = 20;
 
         [Space(20)]
         [SerializeField] private float delayBeforeWave = 3f;
+        [SerializeField] private bool shooting = true;
 
         public GameObject GetEnemyPrefab() { return enemyPrefab; }
         public List<Transform> GetWayPoints() 
@@ -32,5 +34,7 @@ namespace EnemySpace
         public int GetNumberOfEnemies() { return numberOfEnemies; }
         public float GetSpeed() { return moveSpeed; }
         public float GetDelay() { return delayBeforeWave; }
+        public int GetHealth() { return health; }
+        public bool GetShooting() { return shooting; }
     }
 }

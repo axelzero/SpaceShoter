@@ -93,6 +93,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6c0b5d2051ba994bb29786025c9c0e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  explosion:
+    explosionPrefab: {fileID: 199109505568885336, guid: ce9452f6d9cc0dc4694fa291bec5f7d7,
+      type: 3}
   health:
     health: 20
   shooting:

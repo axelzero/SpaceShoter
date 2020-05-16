@@ -9,6 +9,7 @@ namespace PlayerSpace
         [SerializeField] private Move move = new Move();
         [SerializeField] private Attack attack = new Attack();
         [SerializeField] private Health health = new Health();
+                         private Explosion explosion = new Explosion();
                          private Coroutine attacCoroutine;
 
         private void Start()
@@ -36,6 +37,7 @@ namespace PlayerSpace
         {
             if (health.Healths <= 0) 
             {
+                explosion.Explos(transform);
                 Destroy(this.gameObject);
             }
         }
