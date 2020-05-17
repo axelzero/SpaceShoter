@@ -10,9 +10,4 @@ public class Damage : MonoBehaviour
     {
         return damage;
     }
-
-    public void Hit() 
-    {
-        Destroy(gameObject);
-    }
 }

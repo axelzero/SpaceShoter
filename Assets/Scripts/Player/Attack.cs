@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Core;
+using Audio;
 
 namespace PlayerSpace
 {
@@ -13,7 +14,7 @@ namespace PlayerSpace
         [SerializeField] private float instatiateSpeed = 0.1f;
 
 
-        public IEnumerator Fire(Transform transform) 
+        public IEnumerator Fire(Transform transform, UnitSound unitSound) 
         {
             var global = GlobalFields.Instans;
             while (true)
@@ -22,6 +23,7 @@ namespace PlayerSpace
                 {
                     GameObject laser = GameObject.Instantiate(laserPrefab, transform.position, Quaternion.identity, global.GetSpawnHolder());
                     laser.GetComponent<Rigidbody2D>().velocity = new Vector2(0, laserSpeed);
+                    unitSound.AudioPlayPlayerShoot();
                     yield return new WaitForSeconds(instatiateSpeed);
                 }
                 yield return new WaitForSeconds(0.01f);

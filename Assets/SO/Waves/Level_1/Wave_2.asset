@@ -19,7 +19,7 @@ MonoBehaviour:
   timeBetweenSpawns: 0.5
   spawnRandomFactor: 0.3
   numberOfEnemies: 10
-  moveSpeed: 6
+  moveSpeed: 8
   health: 15
   delayBeforeWave: 1
-  shooting: 1
+  shooting: 0

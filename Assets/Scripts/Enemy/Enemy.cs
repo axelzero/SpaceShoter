@@ -2,22 +2,25 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Core;
+using Audio;
 
 namespace EnemySpace
 {
     public class Enemy : MonoBehaviour
     {
-        [SerializeField] private Explosion explosion = new Explosion();
-                         private Health health = new Health();
-        [SerializeField] private EnemyShooting shooting = new EnemyShooting();
-                         private EnemyPathing enemyPathing = new EnemyPathing();
+                         private Health         health = new Health();
+                         private EnemyPathing   enemyPathing = new EnemyPathing();
+        [SerializeField] private Explosion      explosion = new Explosion();
+        [SerializeField] private EnemyShooting  shooting = new EnemyShooting();
+                         private UnitSound      unitSound = new UnitSound();
+                         private int            crachByCollision = 5;
 
         public EnemyShooting EnemyShooting => shooting;
         private void Start()
         {
+            unitSound.Init();
             enemyPathing.Init(transform);
-           // shooting.Init();
-            StartCoroutine(shooting.Shooting(transform,enemyPathing.GetSpeed()));
+            StartCoroutine(shooting.Shooting(transform,enemyPathing.GetSpeed(), unitSound));
         }
         private void Update()
         {
@@ -39,13 +42,20 @@ namespace EnemySpace
         }
         private void Hit(Damage damage)
         {
-            damage.Hit();
             health.Healths -= damage.GetDamage();
             if (health.Healths <= 0)
             {
                 explosion.Explos(transform);
+                unitSound.AudioPlayDie();
                 Destroy(gameObject);
             }
+        }
+        public void Сrash(ref int health) 
+        {
+            health -= crachByCollision;
+            explosion.Explos(transform);
+            unitSound.AudioPlayDie();
+            Destroy(gameObject);
         }
     }
 }
