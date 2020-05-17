@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using LevelManager;
+using MenuUI;
 
 namespace Core
 {
@@ -26,6 +27,9 @@ namespace Core
         [Header("UI")]
         [SerializeField] private GameObject GameOverUI;
 
+        [Header("Player")]
+        [SerializeField] private List<ShipInfo> shipInfo;
+
         public static GlobalFields Instans { get => instans; }
 
         private void Awake() 
@@ -49,5 +53,6 @@ namespace Core
         public float GetVolumePlayerShoot() { return volumePlayerShoot; }
         public Manager GetLevelManager() { return levelManager; }
         public GameObject GetGameOverUI() { return GameOverUI; }
+        public List<ShipInfo> GetShipInfoList() { return shipInfo; }
     }
 }

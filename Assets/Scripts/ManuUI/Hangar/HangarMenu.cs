@@ -77,7 +77,6 @@ namespace MenuUI
                     break;
             }
             SetBackColor();
-            SaveShip();
             ChangeTween();
         }
 
@@ -103,7 +102,7 @@ namespace MenuUI
             }
             backColor[idColor].enabled = true;
         }
-        private void SaveShip() 
+        public void BtnSaveShip() 
         {
             shipConfig = idShip + ":" + idColor;
             PlayerPrefs.SetString("ShipConfig", shipConfig);

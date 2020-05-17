@@ -13,5 +13,6 @@ namespace MenuUI
 
         public Sprite GetShipSprite() { return ship; }
         public List<Sprite> GetColorShipList() { return colorShipList; }
+        public Sprite GetColorShip(int id) { return colorShipList[id]; }
     }
 }

@@ -14,6 +14,7 @@ namespace PlayerSpace
                          private UnitSound unitSound = new UnitSound();
                          private Explosion explosion = new Explosion();
                          private Coroutine attacCoroutine;
+                         private SpriteRenderer spriteShip;
 
         private void Start()
         {
@@ -59,6 +60,11 @@ namespace PlayerSpace
         private void OnDestroy()
         {
             if(attacCoroutine != null) StopCoroutine(attacCoroutine);
+        }
+        public void SetShip(Sprite sprite) 
+        {
+            spriteShip = GetComponent<SpriteRenderer>();
+            spriteShip.sprite = sprite;
         }
     }
 }
