@@ -9,6 +9,7 @@ namespace MenuUI
     {
         [SerializeField] private Sprite ship;
         [SerializeField] private List<Sprite> colorShipList;
+        [SerializeField] private List<Sprite> damageList;
 
         public Sprite GetShipSprite() { return ship; }
         public List<Sprite> GetColorShipList() { return colorShipList; }

@@ -9,15 +9,29 @@ namespace MenuUI
     {
         [SerializeField] private List<ShipInfo> shipInfoList;
         [SerializeField] private List<Image> backColor;
+        [SerializeField] private List<Jun_TweenRuntime> backColorTween = new List<Jun_TweenRuntime>();
         [SerializeField] private Image imgShip;
         [SerializeField] private int idShip = 0;
         [SerializeField] private int idColor = 0;
 
+        [Header("Save Config")]
+        [SerializeField] private string shipConfig = "0:0";
+
         private void Start()
         {
+            GetTweens();
             imgShip.sprite = shipInfoList[idShip].GetShipSprite();
             BtnSetColor(idColor);
-            SetBackColor(idColor);
+            SetBackColor();
+        }
+
+        private void GetTweens()
+        {
+            int count = backColor.Count;
+            for (int i = 0; i < count; i++)
+            {
+                backColorTween.Add(backColor[i].gameObject.GetComponent<Jun_TweenRuntime>());
+            }
         }
 
         public void BtnLeftShip()
@@ -62,15 +76,37 @@ namespace MenuUI
                     Debug.Log("Wrong num btn !!!");
                     break;
             }
-            SetBackColor(idColor);
+            SetBackColor();
+            SaveShip();
+            ChangeTween();
         }
-        private void SetBackColor(int id) 
+
+        private void ChangeTween()
+        {
+            int count = backColorTween.Count;
+            for (int i = 0; i < count; i++)
+            {
+                backColorTween[i].enablePlay = false;
+                backColorTween[i].playType = Jun_TweenRuntime.PlayType.One;
+                backColorTween[i].StopPlay();
+            }
+            backColorTween[idColor].playType = Jun_TweenRuntime.PlayType.Loop;
+            backColorTween[idColor].enablePlay = true;
+            backColorTween[idColor].Play();
+        }
+
+        private void SetBackColor() 
         {
             for (int i = 0; i < backColor.Count; i++)
             {
                 backColor[i].enabled = false;
             }
             backColor[idColor].enabled = true;
+        }
+        private void SaveShip() 
+        {
+            shipConfig = idShip + ":" + idColor;
+            PlayerPrefs.SetString("ShipConfig", shipConfig);
         }
     }
 }
