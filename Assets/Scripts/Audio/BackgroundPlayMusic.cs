@@ -1,15 +1,29 @@
-﻿using System.Collections;
+﻿using Singleton;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 namespace Audio
 {
-    public class BackgroundPlayMusic : MonoBehaviour
+    [RequireComponent(typeof(AudioSource))]
+    public class BackgroundPlayMusic : Singleton<BackgroundPlayMusic>
     {
-        [SerializeField]              private MusicList musicList;
-        [SerializeField,Range(0f,1f)] private float volume = 0.25f; 
-                                      private int trackId;
-                                      private AudioSource audioSource;
+        [SerializeField] private MusicList musicList;
+        [SerializeField, Range(0f, 1f)] private float volume = 0.25f;
+        private int trackId;
+        private AudioSource audioSource;
+
+        private void Awake()
+        {
+            if (FindObjectsOfType(GetType()).Length > 1)
+            {
+                Destroy(gameObject);
+            }
+            else
+            {
+                DontDestroyOnLoad(gameObject);
+            }
+        }
 
         private IEnumerator Start()
         {
@@ -18,7 +32,7 @@ namespace Audio
             trackId = Random.Range(0, list.Count);
             audioSource.clip = list[trackId];
             audioSource.volume = volume;
-            while (true) 
+            while (true)
             {
                 audioSource.Play();
                 yield return new WaitForSeconds(audioSource.clip.length);
@@ -27,7 +41,7 @@ namespace Audio
         }
         private void OnValidate()
         {
-            if (audioSource != null) 
+            if (audioSource != null)
             {
                 audioSource.volume = volume;
             }

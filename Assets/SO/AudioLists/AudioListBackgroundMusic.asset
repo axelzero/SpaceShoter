@@ -15,6 +15,9 @@ MonoBehaviour:
   clips:
   - {fileID: 8300000, guid: 6e7a05a0a4942004993b6f4aeb6dfb32, type: 3}
   - {fileID: 8300000, guid: f21c231fee83d6241ae281823763c80d, type: 3}
-  - {fileID: 8300000, guid: f3c143e83027f6b488333db5b2e924f8, type: 3}
+  - {fileID: 8300000, guid: 58f32ef37a785de4db6e74847a4bb1dc, type: 3}
+  - {fileID: 8300000, guid: 51b7437594978584ab78965db7e2ff1f, type: 3}
+  - {fileID: 8300000, guid: cf62a9569716cec4982dda40ac9577f9, type: 3}
+  - {fileID: 8300000, guid: 338a37eab9b4a794592970382ac72724, type: 3}
   - {fileID: 8300000, guid: d90eda49747e495459f60e60528a04b1, type: 3}
   - {fileID: 8300000, guid: c54f04755540eff4dbcec95c54d3d78e, type: 3}
