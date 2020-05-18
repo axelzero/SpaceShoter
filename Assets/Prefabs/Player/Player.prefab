@@ -182,11 +182,12 @@ MonoBehaviour:
     yMax: 0
     paddingX: 0.5
     paddingY: 0.5
+    joystick: {fileID: 0}
   attack:
     laserPrefab: {fileID: 7457083697404659872, guid: f97b2fafeb8f239428b14f8948c98382,
       type: 3}
     laserSpeed: 20
-    instatiateSpeed: 1
+    instatiateSpeed: 0.5
     autoFire: 1
   health:
     health: 100

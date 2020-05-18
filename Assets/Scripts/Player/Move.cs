@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Core;
 
 namespace PlayerSpace
 {
@@ -17,6 +18,9 @@ namespace PlayerSpace
         [SerializeField] private float paddingX = 0.05f;
         [SerializeField] private float paddingY = 0.03f;
 
+        [Header("Joystick")]
+        [SerializeField] private Joystick joystick = new Joystick();
+
         //Init in startMethod
         public void SetUpMoveBorders()
         {
@@ -29,9 +33,21 @@ namespace PlayerSpace
         }
         public void Movement(Transform transform)
         {
-            float deltaX = Input.GetAxis("Horizontal") * Time.deltaTime * speed;
-            float deltaY = Input.GetAxis("Vertical") * Time.deltaTime * speed;
-
+            if (!GlobalFields.Instans.GetPlayerMoveByJoystick())
+            {
+                float deltaX = Input.GetAxis("Horizontal") * Time.deltaTime * speed;
+                float deltaY = Input.GetAxis("Vertical") * Time.deltaTime * speed;
+                Moving(transform, deltaX, deltaY);
+            }
+            else 
+            {
+                float deltaX = joystick.Horizontal * Time.deltaTime * speed;
+                float deltaY = joystick.Vertical * Time.deltaTime * speed;
+                Moving(transform, deltaX, deltaY);
+            }
+        }
+        private void Moving(Transform transform, float deltaX, float deltaY) 
+        {
             var newXPos = transform.position.x + deltaX;
             var newYPos = transform.position.y + deltaY;
 

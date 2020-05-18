@@ -10,6 +10,7 @@ namespace Core
     {
                          private static GlobalFields instans;
         [SerializeField] private Transform spawnHolder;
+        
         [Header("Effects")]
         [SerializeField] private GameObject explosionPrefab;
 
@@ -29,6 +30,7 @@ namespace Core
 
         [Header("Player")]
         [SerializeField] private List<ShipInfo> shipInfo;
+        [SerializeField] private bool byJoystick = true;
 
         public static GlobalFields Instans { get => instans; }
 
@@ -54,5 +56,6 @@ namespace Core
         public Manager GetLevelManager() { return levelManager; }
         public GameObject GetGameOverUI() { return GameOverUI; }
         public List<ShipInfo> GetShipInfoList() { return shipInfo; }
+        public bool GetPlayerMoveByJoystick() { return byJoystick; }
     }
 }
