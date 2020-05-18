@@ -9,6 +9,7 @@ namespace MenuUI
     public class BtnControllerMainMenu : MonoBehaviour
     {
         [SerializeField] private Button btnLoadLevel;
+        [SerializeField] private Button btnExit;
         [SerializeField] private GameObject menuUI;
         [SerializeField] private GameObject hangarUI;
                          private Manager manager;
@@ -17,6 +18,7 @@ namespace MenuUI
         {
             manager = FindObjectOfType<Manager>();
             btnLoadLevel.onClick.AddListener(manager.LoadFirstLevel);
+            btnExit.onClick.AddListener(manager.Quit);
         }
         public void BtnMainMenu() 
         {

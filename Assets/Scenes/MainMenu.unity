@@ -2052,6 +2052,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   btnLoadLevel: {fileID: 1938155250}
+  btnExit: {fileID: 1940476149}
   menuUI: {fileID: 1475935924}
   hangarUI: {fileID: 1440649208}
 --- !u!114 &899181362

@@ -30,9 +30,13 @@ namespace LevelManager
         {
             StartCoroutine(Over(UI));
         }
-        public void Quit() 
+        public void Quit()
         {
-            Application.Quit();
+            #if UNITY_EDITOR
+                UnityEditor.EditorApplication.isPlaying = false;
+            #else
+                Application.Quit();
+            #endif
         }
         private IEnumerator Over(GameObject UI) 
         {

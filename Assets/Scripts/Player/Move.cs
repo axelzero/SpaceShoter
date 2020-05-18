@@ -18,6 +18,9 @@ namespace PlayerSpace
         [SerializeField] private float paddingX = 0.05f;
         [SerializeField] private float paddingY = 0.03f;
 
+        [Header("Win")]
+        [SerializeField] private Transform _winPos;
+
         [Header("Joystick")]
         [SerializeField] private Joystick joystick = new Joystick();
 
@@ -33,17 +36,25 @@ namespace PlayerSpace
         }
         public void Movement(Transform transform)
         {
-            if (!GlobalFields.Instans.GetPlayerMoveByJoystick())
+            if (!GlobalFields.Instans.GetIsWin())
             {
-                float deltaX = Input.GetAxis("Horizontal") * Time.deltaTime * speed;
-                float deltaY = Input.GetAxis("Vertical") * Time.deltaTime * speed;
-                Moving(transform, deltaX, deltaY);
+                if (!GlobalFields.Instans.GetPlayerMoveByJoystick())
+                {
+                    float deltaX = Input.GetAxis("Horizontal") * Time.deltaTime * speed;
+                    float deltaY = Input.GetAxis("Vertical") * Time.deltaTime * speed;
+                    Moving(transform, deltaX, deltaY);
+                }
+                else
+                {
+                    float deltaX = joystick.Horizontal * Time.deltaTime * speed;
+                    float deltaY = joystick.Vertical * Time.deltaTime * speed;
+                    Moving(transform, deltaX, deltaY);
+                }
             }
             else 
             {
-                float deltaX = joystick.Horizontal * Time.deltaTime * speed;
-                float deltaY = joystick.Vertical * Time.deltaTime * speed;
-                Moving(transform, deltaX, deltaY);
+                var movementThisFrame = speed * Time.deltaTime;
+                transform.position = Vector2.MoveTowards(transform.position, _winPos.position, movementThisFrame);
             }
         }
         private void Moving(Transform transform, float deltaX, float deltaY) 

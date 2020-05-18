@@ -8,9 +8,9 @@ namespace Core
 {
     public class GlobalFields : MonoBehaviour
     {
-                         private static GlobalFields instans;
+        private static GlobalFields instans;
         [SerializeField] private Transform spawnHolder;
-        
+
         [Header("Effects")]
         [SerializeField] private GameObject explosionPrefab;
 
@@ -27,10 +27,12 @@ namespace Core
 
         [Header("UI")]
         [SerializeField] private GameObject GameOverUI;
+        [SerializeField] private GameObject WinUI;
 
         [Header("Player")]
         [SerializeField] private List<ShipInfo> shipInfo;
         [SerializeField] private bool byJoystick = true;
+        [SerializeField] private bool _isWin = false;
 
         public static GlobalFields Instans { get => instans; }
 
@@ -57,5 +59,6 @@ namespace Core
         public GameObject GetGameOverUI() { return GameOverUI; }
         public List<ShipInfo> GetShipInfoList() { return shipInfo; }
         public bool GetPlayerMoveByJoystick() { return byJoystick; }
+        public bool GetIsWin() { return _isWin; }
     }
 }

@@ -20,7 +20,7 @@ namespace PlayerSpace
             var global = GlobalFields.Instans;
             while (true)
             {
-                if (Input.GetButton("Fire1") || autoFire)
+                if ((Input.GetButton("Fire1") || autoFire))
                 {
                     GameObject laser = GameObject.Instantiate(laserPrefab, transform.position, Quaternion.identity, global.GetSpawnHolder());
                     laser.GetComponent<Rigidbody2D>().velocity = new Vector2(0, laserSpeed);
@@ -28,6 +28,10 @@ namespace PlayerSpace
                     yield return new WaitForSeconds(instatiateSpeed);
                 }
                 yield return new WaitForSeconds(0.01f);
+                if (GlobalFields.Instans.GetIsWin()) 
+                {
+                    break;
+                }
             }
         }
     }
