@@ -43,6 +43,7 @@ namespace EnemySpace
 
                 var enemyGo = Instantiate(enemyPrefab, pos, Quaternion.identity, holder);
                 var enemy = enemyGo.GetComponent<Enemy>();
+                enemy.SetScore(currentWave.GetScore());
                 enemy.GetPath().SetWaveConfig(currentWave);
                 enemy.SetHealth(currentWave.GetHealth());
                 enemy.EnemyShooting.SetShooting(currentWave.GetShooting());

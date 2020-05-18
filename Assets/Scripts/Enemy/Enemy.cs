@@ -8,12 +8,14 @@ namespace EnemySpace
 {
     public class Enemy : MonoBehaviour
     {
+        [SerializeField] private bool           boss = false;
                          private Health         health = new Health();
                          private EnemyPathing   enemyPathing = new EnemyPathing();
         [SerializeField] private Explosion      explosion = new Explosion();
         [SerializeField] private EnemyShooting  shooting = new EnemyShooting();
                          private UnitSound      unitSound = new UnitSound();
                          private int            crachByCollision = 5;
+                         private int            score = 5;
 
         public EnemyShooting EnemyShooting => shooting;
         private void Start()
@@ -35,6 +37,7 @@ namespace EnemySpace
             Damage damage = other.gameObject.GetComponent<Damage>();
             if (!damage) { return; }
             Hit(damage);
+            Destroy(other.gameObject);
         }
         public void SetHealth(int healthPoints) 
         {
@@ -45,6 +48,7 @@ namespace EnemySpace
             health.Healths -= damage.GetDamage();
             if (health.Healths <= 0)
             {
+                GameSession.Instace.AddToScore(score);
                 explosion.Explos(transform);
                 unitSound.AudioPlayDie();
                 Destroy(gameObject);
@@ -56,6 +60,14 @@ namespace EnemySpace
             explosion.Explos(transform);
             unitSound.AudioPlayDie();
             Destroy(gameObject);
+        }
+        public void SetScore(int score) 
+        {
+            this.score = score;
+        }
+        public bool IsItBoss() 
+        {
+            return boss;
         }
     }
 }

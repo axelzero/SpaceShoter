@@ -12,6 +12,7 @@ namespace PlayerSpace
         [SerializeField] private GameObject laserPrefab;
         [SerializeField] private float laserSpeed = 10f;
         [SerializeField] private float instatiateSpeed = 0.1f;
+        [SerializeField] private bool autoFire = false;
 
 
         public IEnumerator Fire(Transform transform, UnitSound unitSound) 
@@ -19,7 +20,7 @@ namespace PlayerSpace
             var global = GlobalFields.Instans;
             while (true)
             {
-                if (Input.GetButton("Fire1"))
+                if (Input.GetButton("Fire1") || autoFire)
                 {
                     GameObject laser = GameObject.Instantiate(laserPrefab, transform.position, Quaternion.identity, global.GetSpawnHolder());
                     laser.GetComponent<Rigidbody2D>().velocity = new Vector2(0, laserSpeed);

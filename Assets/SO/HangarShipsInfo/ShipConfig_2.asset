@@ -18,3 +18,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: fc193b2a30aa94541bb64cd5dab46634, type: 3}
   - {fileID: 21300000, guid: 6179c9cbefeabe443b3752a14dc5a9e8, type: 3}
   - {fileID: 21300000, guid: d1191f6f1b53f4144870a6614e0e514c, type: 3}
+  damageList:
+  - {fileID: 21300000, guid: 2fdffd046de63464e9e0e26c742470de, type: 3}
+  - {fileID: 21300000, guid: 4d73aa770fcbaa04f8b57e4f4f1f1dac, type: 3}
+  - {fileID: 21300000, guid: 6a89a69f8da5e6a46b7e1726003ef31d, type: 3}

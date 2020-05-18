@@ -7,12 +7,17 @@ namespace PlayerSpace
 {
     public class InitPlayer : MonoBehaviour
     {
-        [SerializeField] private Player player;
-        [SerializeField] private string shipConfig;
+        private Player player;
+        private string shipConfig;
         private void Awake()
         {
             player = FindObjectOfType<Player>();
             shipConfig = PlayerPrefs.GetString("ShipConfig");
+
+            if (shipConfig == "") 
+            {
+                shipConfig = "0:0";
+            }
 
             string[] words = shipConfig.Split(':');
 

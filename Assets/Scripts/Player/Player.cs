@@ -18,9 +18,11 @@ namespace PlayerSpace
 
         private void Start()
         {
+            health.Init();
             unitSound.Init();
             move.SetUpMoveBorders();
             attacCoroutine = StartCoroutine(attack.Fire(transform,unitSound));
+
         }
         private void Update()
         {
@@ -34,14 +36,18 @@ namespace PlayerSpace
             if (damage)
             {
                 health.Healths -= damage.GetDamage();
+                Destroy(other.gameObject);
             } 
             else if (enemy) 
             {
                 int hp = health.Healths;
-                enemy.Сrash(ref hp);
-                health.Healths = hp;
+                if (!enemy.IsItBoss())
+                {
+                    enemy.Сrash(ref hp);
+                    health.Healths = hp;
+                }
             }
-
+            health.SetDamage();
             PlayerDie();
         }
         private void PlayerDie() 

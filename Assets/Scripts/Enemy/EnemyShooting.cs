@@ -13,7 +13,7 @@ namespace EnemySpace
                          private bool shooting = true;
         [SerializeField] private GameObject enemyLaserPregab;
         [SerializeField] private float laserSpeed = 10f;
-        [SerializeField] private float shotCounter;
+                         private float shotCounter;
         [SerializeField] private float minTimeBetweenShots = 0.2f;
         [SerializeField] private float maxTimeBetweenShots = 3f;
                          private Vector3 shift = new Vector3(0f,-1f,0f);
