@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Core;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -41,6 +42,7 @@ namespace EnemySpace
             }
             else
             {
+                //GlobalFields.Instans.GetEnemySpawner().EnemyOutGame();
                 GameObject.Destroy(transform.gameObject);
             }
         }

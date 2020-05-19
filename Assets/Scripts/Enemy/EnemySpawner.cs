@@ -9,6 +9,15 @@ namespace EnemySpace
     {
         [SerializeField] private List<WaveConfig> waveConfig;
         [SerializeField] private bool looping = false;
+        [SerializeField] private int totalEnemys = 0;
+
+        private void Awake()
+        {
+            foreach (var item in waveConfig)
+            {
+                totalEnemys += item.GetNumberOfEnemies();
+            }
+        }
 
         private IEnumerator Start()
         {
@@ -48,6 +57,15 @@ namespace EnemySpace
                 enemy.SetHealth(currentWave.GetHealth());
                 enemy.EnemyShooting.SetShooting(currentWave.GetShooting());
                 yield return new WaitForSeconds(currentWave.GetTiemBetweenSpawn());
+            }
+        }
+
+        public void EnemyOutGame() 
+        {
+            totalEnemys--;
+            if (totalEnemys <= 0) 
+            {
+                GameSession.Instace.WinGame();
             }
         }
     }

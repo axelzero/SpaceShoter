@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using LevelManager;
 using MenuUI;
+using EnemySpace;
 
 namespace Core
 {
@@ -32,7 +33,12 @@ namespace Core
         [Header("Player")]
         [SerializeField] private List<ShipInfo> shipInfo;
         [SerializeField] private bool byJoystick = true;
+        [SerializeField] private bool joystickOnOff = true;
+        [SerializeField] private GameObject joystickGO;
         [SerializeField] private bool _isWin = false;
+
+        [Header("Enemy")]
+        [SerializeField] private EnemySpawner enemySpawner;
 
         public static GlobalFields Instans { get => instans; }
 
@@ -56,9 +62,25 @@ namespace Core
         public float GetVolumeEnemyShoot() { return volumeEnemyShoot; }
         public float GetVolumePlayerShoot() { return volumePlayerShoot; }
         public Manager GetLevelManager() { return levelManager; }
-        public GameObject GetGameOverUI() { return GameOverUI; }
+        public GameObject GetGameOverUI() { JoystickOnOff(); return GameOverUI;  }
+        public GameObject GetWinUI() { return WinUI; }
         public List<ShipInfo> GetShipInfoList() { return shipInfo; }
         public bool GetPlayerMoveByJoystick() { return byJoystick; }
+        public void JoystickOnOff() 
+        {
+            if (joystickOnOff)
+            {
+                joystickOnOff = false;
+                joystickGO.SetActive(joystickOnOff);
+            }
+            else 
+            {
+                joystickOnOff = true;
+                joystickGO.SetActive(joystickOnOff);
+            }
+        }
         public bool GetIsWin() { return _isWin; }
+        public void SetIsWin() { _isWin = true; JoystickOnOff(); }
+        public EnemySpawner GetEnemySpawner() { return enemySpawner; }
     }
 }

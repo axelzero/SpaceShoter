@@ -51,6 +51,7 @@ namespace EnemySpace
                 GameSession.Instace.AddToScore(score);
                 explosion.Explos(transform);
                 unitSound.AudioPlayDie();
+                //GlobalFields.Instans.GetEnemySpawner().EnemyOutGame();
                 Destroy(gameObject);
             }
         }
@@ -59,6 +60,7 @@ namespace EnemySpace
             health -= crachByCollision;
             explosion.Explos(transform);
             unitSound.AudioPlayDie();
+            //GlobalFields.Instans.GetEnemySpawner().EnemyOutGame();
             Destroy(gameObject);
         }
         public void SetScore(int score) 
@@ -68,6 +70,11 @@ namespace EnemySpace
         public bool IsItBoss() 
         {
             return boss;
+        }
+
+        private void OnDestroy()
+        {
+            GlobalFields.Instans.GetEnemySpawner().EnemyOutGame();
         }
     }
 }

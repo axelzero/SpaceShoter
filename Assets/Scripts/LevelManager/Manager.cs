@@ -20,6 +20,7 @@ namespace LevelManager
         }
         public void LoadMainMenu()
         {
+            Debug.Log("Load Main Menu");
             SceneManager.LoadScene(0);
         }
         public void LoadFirstLevel()
